@@ -13,8 +13,8 @@ public class Teacher {
 	private String firstName;
 	@Column(name = "last_name")
 	private String lastName;
-	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "Course")
-	@Column(name = "course_id")
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "Course_id")
 	private Course courseId;
 
 	public Teacher() {
