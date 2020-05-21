@@ -3,7 +3,7 @@ package com.example.demo.core.jpa.domain;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "Teacher")
+@Table(name = "teacher")
 public class Teacher {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,7 +14,7 @@ public class Teacher {
 	@Column(name = "last_name")
 	private String lastName;
 	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "Course_id")
+	@JoinColumn(name = "course_id")
 	private Course courseId;
 
 	public Teacher() {
