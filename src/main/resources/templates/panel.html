@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<head th:include="/fragments/meta.html"></head>
+<head th:include="fragments/meta.html"></head>
 <head><title>Course panel</title></head>
 <body>
-<navbar th:insert="/fragments/navbar.html"></navbar>
+<navbar th:insert="fragments/navbar.html"></navbar>
 <a href="/showForm" class="btn btn-outline-primary" role="button">Add course</a>
 <table class="table table-striped table-dark">
     <thead>
@@ -30,6 +30,6 @@
     </tr>
     </tbody>
 </table>
-<div th:include="/fragments/default-scripts.html"></div>
+<div th:include="fragments/default-scripts.html"></div>
 </body>
 </html>
