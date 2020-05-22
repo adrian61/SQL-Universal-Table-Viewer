@@ -1,10 +1,9 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.css}" />
-</head>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:include="fragments/meta.html"></head>
+<head><title th:text="${status}+ ' error'"></title></head>
 <body marginwidth="0" marginheight="0">
-
+<navbar th:insert="fragments/navbar.html"></navbar>
 <div class="container">
     <div class="row">
         <h1>Thymeleaf Error Page</h1>
@@ -68,5 +67,6 @@
         </div>
     </div>
 </div>
+<div th:include="/fragments/default-scripts.html"></div>
 </body>
 </html>
