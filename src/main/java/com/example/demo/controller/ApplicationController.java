@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
@@ -42,6 +41,13 @@ public class ApplicationController {
 		List<Course> courseList = courseController.findAll();
 		theModel.addAttribute("courseList", courseList);
 		return "panel";
+	}
+
+	@GetMapping(value = "/showForm")
+	public String showFormForAdd(Model theModel) {
+		Course course = new Course();
+		theModel.addAttribute("course", course);
+		return "course-form";
 	}
 
 
