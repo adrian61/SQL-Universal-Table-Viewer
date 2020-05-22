@@ -5,10 +5,7 @@ import com.example.demo.core.jpa.domain.Course;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -55,10 +52,26 @@ public class ApplicationController {
 		return "course-form";
 	}
 
+	@GetMapping(value = "/updateForm/{id}")
+	public String showFormForUpdate(@PathVariable int id, Model theModel) {
+		Course course = courseDAO.getCourse(id);
+		theModel.addAttribute("course", course);
+		return "course-form";
+	}
+
 	//TODO delete this and use rest in the future
 	@PostMapping("/api/saveCourse")
 	public String saveCourse(@ModelAttribute("course") Course course) {
+		System.out.println(course.getDescription());
 		courseDAO.saveCourse(course);
 		return "redirect:/panel";
 	}
+
+
+	@GetMapping(value = "api/deleteCourse/{id}")
+	public String handleDeleteUser(@PathVariable int id) {
+		courseDAO.deleteCourse(id);
+		return "redirect:/panel";
+	}
+
 }

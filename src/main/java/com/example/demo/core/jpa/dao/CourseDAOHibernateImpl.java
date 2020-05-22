@@ -24,7 +24,7 @@ public class CourseDAOHibernateImpl implements CourseDAO {
 	public List<Course> findAll() {
 		Session currentSession = entityManager.unwrap(Session.class);
 		Query<Course> theQuery =
-				currentSession.createQuery("from Course", Course.class);
+				currentSession.createQuery("from Course c ORDER BY c.id", Course.class);
 		List<Course> Courses = theQuery.getResultList();
 		return Courses;
 	}
@@ -33,15 +33,25 @@ public class CourseDAOHibernateImpl implements CourseDAO {
 	@Transactional
 	public void saveCourse(Course course) {
 		Session currentSession = entityManager.unwrap(Session.class);
-
-		// save/upate the customer ... finally LOL
+		System.out.println(course.getId());
+		// save/update the course
 		currentSession.saveOrUpdate(course);
 	}
 
 	@Override
 	@Transactional
-	public void deleteCourse(Course course) {
+	public Course getCourse(int id) {
 		Session currentSession = entityManager.unwrap(Session.class);
-		currentSession.delete(course);
+		Course course = currentSession.get(Course.class, id);
+		return course;
+	}
+
+	@Override
+	@Transactional
+	public void deleteCourse(int id) {
+		Session currentSession = entityManager.unwrap(Session.class);
+		Query theQuery = currentSession.createQuery("delete from Course where id=:id");
+		theQuery.setParameter("id", id);
+		theQuery.executeUpdate();
 	}
 }

@@ -21,13 +21,4 @@ public class CourseController {
 	public List<Course> findAll() {
 		return courseDAO.findAll();
 	}
-
-	@PostMapping("/courses")
-	public Course addCourse(@RequestBody Course course) {
-		// also just in case the pass an id in JSON ... set id to 0
-		// this is force a save of new item ... instead of update
-		course.setId(0);
-		courseDAO.saveCourse(course);
-		return course;
-	}
 }

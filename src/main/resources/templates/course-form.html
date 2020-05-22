@@ -8,6 +8,8 @@
 
 
 <form action="saveCourse" th:action="@{/api/saveCourse}" th:object="${course}" method="post">
+    <strong id="idText" th:text="${course.getId()}" hidden></strong>
+    <input id="id" th:field="*{id}" type="hidden"/>
     <table class="table table-striped table-dark">
         <thead>
         <td>Name</td>
@@ -26,6 +28,7 @@
         <tr>
             <td></td>
             <td>
+
                 <button class="btn btn-success" type="submit" name="submit" th:value="Save" th:text="'save'">save
                 </button>
                 <button class="btn btn-outline-danger" type="reset">clear</button>
