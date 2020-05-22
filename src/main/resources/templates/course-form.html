@@ -1,9 +1,42 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+>
 <head th:include="fragments/meta.html"></head>
 <head><title>SQL Universal Table Viewer</title></head>
 <body>
 <navbar th:insert="fragments/navbar.html"></navbar>
+
+
+<form action="saveCourse" th:action="@{/api/saveCourse}" th:object="${course}" method="post">
+    <table class="table table-striped table-dark">
+        <thead>
+        <td>Name</td>
+        <td>Field</td>
+        </thead>
+        <tbody>
+        <tr>
+            <td><label>Name:</label></td>
+            <td><input type="text" th:field="*{name}"/></td>
+        </tr>
+
+        <tr>
+            <td><label>Description:</label></td>
+            <td><input type="text" th:field="*{description}"/></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <button class="btn btn-success" type="submit" name="submit" th:value="Save" th:text="'save'">save
+                </button>
+                <button class="btn btn-outline-danger" type="reset">clear</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <a href="/panel" class="btn btn-outline-primary" role="button">Back to list</a>
+</form>
+
+
 <div th:include="/fragments/default-scripts.html"></div>
 </body>
 </html>

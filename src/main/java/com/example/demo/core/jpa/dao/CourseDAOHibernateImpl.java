@@ -28,4 +28,20 @@ public class CourseDAOHibernateImpl implements CourseDAO {
 		List<Course> Courses = theQuery.getResultList();
 		return Courses;
 	}
+
+	@Override
+	@Transactional
+	public void saveCourse(Course course) {
+		Session currentSession = entityManager.unwrap(Session.class);
+
+		// save/upate the customer ... finally LOL
+		currentSession.saveOrUpdate(course);
+	}
+
+	@Override
+	@Transactional
+	public void deleteCourse(Course course) {
+		Session currentSession = entityManager.unwrap(Session.class);
+		currentSession.delete(course);
+	}
 }

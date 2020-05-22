@@ -1,7 +1,6 @@
 package com.example.demo.core.jpa.dao;
 
 import com.example.demo.core.jpa.domain.Teacher;
-import com.example.demo.core.jpa.domain.Teacher;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
