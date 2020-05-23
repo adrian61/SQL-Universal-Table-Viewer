@@ -1,4 +1,4 @@
-package com.example.demo.controller;
+package com.example.demo.web.controller;
 
 import com.example.demo.core.jpa.dao.CourseDAO;
 import com.example.demo.core.jpa.domain.Course;
