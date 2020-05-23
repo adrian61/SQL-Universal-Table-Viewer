@@ -29,7 +29,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.formLogin().loginPage("/login").loginProcessingUrl("/auth_user").permitAll()
 				.and()
 				.exceptionHandling().accessDeniedPage("/access-denied");
-
+				.and()
+        .logout().permitAll();
 	}
 
 }
