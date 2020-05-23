@@ -74,4 +74,9 @@ public class ApplicationController {
 		return "redirect:/panel";
 	}
 
+	@GetMapping("/access_denied")
+	public String showAccessDenied() {
+		return "access-denied";
+	}
+
 }

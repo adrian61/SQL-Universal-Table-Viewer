@@ -22,6 +22,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests().anyRequest().authenticated().and().formLogin().loginPage("/login").loginProcessingUrl("/auth_user").permitAll();
+		http.authorizeRequests()
+				.antMatchers("/resources/**").permitAll()
+				.antMatchers("/panel").hasRole("user")
+				.and()
+				.formLogin().loginPage("/login").loginProcessingUrl("/auth_user").permitAll()
+				.and()
+				.exceptionHandling().accessDeniedPage("/access-denied");
+
 	}
+
 }
