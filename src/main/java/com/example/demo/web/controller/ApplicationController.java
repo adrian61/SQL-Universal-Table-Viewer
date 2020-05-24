@@ -31,6 +31,11 @@ public class ApplicationController {
 		return "login";
 	}
 
+	@GetMapping(value = "/logout")
+	public String logoutPage(Model theModel) {
+		return "index";
+	}
+
 	@GetMapping(value = "/register")
 	public String registerPage(Model theModel) {
 		return "register";
@@ -39,7 +44,6 @@ public class ApplicationController {
 
 	@GetMapping(value = "/panel")
 	public String showPanel(Model theModel) {
-
 		List<Course> courseList = courseController.findAll();
 		theModel.addAttribute("courseList", courseList);
 		return "panel";

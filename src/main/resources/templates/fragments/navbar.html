@@ -14,11 +14,19 @@
             <li class="nav-item">
                 <a class="nav-link" href="/api">API</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/panel">Panel</a>
+            </li>
         </ul>
         <ul class="navbar-nav ml-auto">
-            <li><a class="nav-link" href="/register">Register</a></li>
-            <li><a class="nav-link" href="/login">Login</a></li>
-            <li><a th:href="|/logout|" class="btn btn-info">Logout</a></li>
+            <li sec:authorize="!isAuthenticated()"><a class="nav-link" href="/register">Register</a></li>
+            <li sec:authorize="!isAuthenticated()"><a class="nav-link" href="/login">Login</a></li>
+            <li sec:authorize="isAuthenticated()"><a class="nav-link" href="#">Welcome, <span sec:authentication="name"></span></a></li>
+            <th:block th:each="r, iter:${#authentication.getAuthorities()}">
+                <span th:text="${r}"></span>
+                <th:block th:if="${!iter.last}">, </th:block>
+            </th:block>
+            <li sec:authorize="isAuthenticated()"><a class="nav-link" href="/logout">Logout</a></li>
         </ul>
     </div>
 </nav>

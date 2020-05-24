@@ -6,6 +6,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.User;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
@@ -23,14 +24,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
-				.antMatchers("/resources/**").permitAll()
-				.antMatchers("/panel").hasRole("user")
+				.antMatchers("/", "/resources/**").permitAll()
+				.antMatchers("/panel").hasAnyRole("USER","ADMIN")
+				.antMatchers("/updateForm/**","/showForm","/api/deleteCourse/**").hasAnyRole("ADMIN")
+				.antMatchers("/api/saveCourse").hasAnyRole("ADMIN", "USER")
 				.and()
 				.formLogin().loginPage("/login").loginProcessingUrl("/auth_user").permitAll()
 				.and()
-				.exceptionHandling().accessDeniedPage("/access-denied")
+				.exceptionHandling().accessDeniedPage("/access_denied")
 				.and()
-				.logout().permitAll();
+				.logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+				.logoutSuccessUrl("/").deleteCookies("JSESSIONID")
+				.invalidateHttpSession(true);
 	}
 
 }
