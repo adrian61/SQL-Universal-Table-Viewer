@@ -36,12 +36,6 @@ public class ApplicationController {
 		return "index";
 	}
 
-	@GetMapping(value = "/register")
-	public String registerPage(Model theModel) {
-		return "register";
-	}
-
-
 	@GetMapping(value = "/panel")
 	public String showPanel(Model theModel) {
 		List<Course> courseList = courseController.findAll();

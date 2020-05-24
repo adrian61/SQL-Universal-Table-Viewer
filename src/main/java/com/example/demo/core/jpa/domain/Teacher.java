@@ -3,7 +3,7 @@ package com.example.demo.core.jpa.domain;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "teacher")
+@Table(name = "teacher", schema = "public")
 public class Teacher {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
